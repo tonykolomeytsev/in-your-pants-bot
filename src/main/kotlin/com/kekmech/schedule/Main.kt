@@ -1,9 +1,6 @@
 package com.kekmech.schedule
 
 import com.kekmech.schedule.di.AppModule
-import com.kekmech.schedule.gson.LocalDateSerializer
-import com.kekmech.schedule.gson.LocalDateTimeSerializer
-import com.kekmech.schedule.gson.LocalTimeSerializer
 import com.kekmech.schedule.helpers.modules
 import com.kekmech.schedule.repository.MainRepository
 import io.ktor.application.*
@@ -16,16 +13,12 @@ import io.ktor.response.*
 import io.ktor.server.netty.*
 import io.micrometer.core.instrument.distribution.DistributionStatisticConfig
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
-import org.jooq.meta.derby.sys.Sys
 import org.koin.java.KoinJavaComponent.inject
 import org.koin.ktor.ext.Koin
 import org.slf4j.event.Level
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.text.DateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 import java.util.*
 
 val VK_GROUP_ID = System.getenv("VK_GROUP_ID")!!
@@ -49,9 +42,6 @@ fun Application.main() {
     install(ContentNegotiation) {
         gson {
             setDateFormat(DateFormat.LONG)
-            registerTypeAdapter(LocalDate::class.java, LocalDateSerializer())
-            registerTypeAdapter(LocalTime::class.java, LocalTimeSerializer())
-            registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
         }
     }
     install(StatusPages) {

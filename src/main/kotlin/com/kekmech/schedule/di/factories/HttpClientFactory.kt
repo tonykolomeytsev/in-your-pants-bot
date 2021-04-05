@@ -1,8 +1,6 @@
 package com.kekmech.schedule.di.factories
 
 import com.kekmech.schedule.di.Logger
-import com.kekmech.schedule.gson.LocalDateSerializer
-import com.kekmech.schedule.gson.LocalTimeSerializer
 import com.kekmech.schedule.okhttp.RequiredHeadersInterceptor
 import com.kekmech.schedule.okhttp.UnzippingInterceptor
 import com.kekmech.schedule.okhttp.trustAllSslCertificates
@@ -12,8 +10,6 @@ import io.ktor.client.features.HttpTimeout
 import io.ktor.client.features.json.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.text.DateFormat
-import java.time.LocalDate
-import java.time.LocalTime
 import java.util.concurrent.TimeUnit
 
 object HttpClientFactory {
@@ -22,8 +18,6 @@ object HttpClientFactory {
         install(JsonFeature) {
             serializer = GsonSerializer {
                 setDateFormat(DateFormat.LONG)
-                registerTypeAdapter(LocalDate::class.java, LocalDateSerializer())
-                registerTypeAdapter(LocalTime::class.java, LocalTimeSerializer())
             }
         }
         install(HttpTimeout) {

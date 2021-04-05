@@ -9,11 +9,7 @@ class PostCallbackPayload(
     val secret: String?
 )
 
-class PostCallbackPayloadMessage (
-    val type: PayloadType,
-    @SerializedName("group_id")
-    val groupId: String,
-    val secret: String?,
+class PostCallbackPayloadMessage(
     @SerializedName("object")
     val payload: MessagePayload
 )

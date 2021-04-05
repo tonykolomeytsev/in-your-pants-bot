@@ -21,8 +21,8 @@ class AppModule : ModuleProvider({
     single { Locale.GERMAN } bind Locale::class
 
     single { MessageCounter() }
-    single { PhrasesSource() } bind PhrasesSource::class
-    single { MainRepository(get(), get()) } bind MainRepository::class
+    single { PhrasesSource() }
+    single { MainRepository(get(), get()) }
 })
 
 object Logger : HttpLoggingInterceptor.Logger {
