@@ -1,0 +1,7 @@
+.gradle
+.idea
+.git
+build
+**_SECRET
+cache
+credentials
