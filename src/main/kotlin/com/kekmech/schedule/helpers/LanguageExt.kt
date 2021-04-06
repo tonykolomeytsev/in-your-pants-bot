@@ -11,4 +11,4 @@ fun String.getAllWords() = this
     .filter { it.isNotEmpty() }
     .takeIf { it.isNotEmpty() }
 
-private fun String.clear(): String = replace("[^0-9a-zA-Zа-яА-Я\\-\\s]".toRegex(), "")
+private fun String.clear(): String = replace("[^0-9a-zA-Zа-яА-ЯёЁ\\-\\s]".toRegex(), " ")

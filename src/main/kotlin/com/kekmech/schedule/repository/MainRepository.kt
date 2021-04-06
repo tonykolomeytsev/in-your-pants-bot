@@ -25,6 +25,11 @@ class MainRepository(
         val words = message.text?.getAllWords() ?: return null
         val dict = phrasesSource.getPhrases() ?: return null
 
+        when {
+            checkLinks(words) -> return null
+            checkMentioning(words) -> return dict.actualForOneWord["привет"]?.random()?.format("")
+        }
+
         val response = if (words.size == 1) {
             val word = words.first()
             dict.actualForOneWord[word]?.random()?.format(word).randomTake(0.90)
@@ -44,6 +49,10 @@ class MainRepository(
 
         return response
     }
+
+    private fun checkLinks(words: List<String>) = words.any { it.contains("http", ignoreCase = true) }
+
+    private fun checkMentioning(words: List<String>) = words.any { it.contains("inyourpantsbot", ignoreCase = true) }
 
     private fun getRandomPhrase(dict: Phrases, phrase: String): String =
         if (phrase.isVerb()) {

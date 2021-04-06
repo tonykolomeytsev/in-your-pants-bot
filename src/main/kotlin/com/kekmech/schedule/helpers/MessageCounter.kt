@@ -21,7 +21,7 @@ class MessageCounter {
     fun randomReset(peerId: Int) {
         val counter = counters[peerId] ?: Counter()
         counters[peerId] = counter.copy(
-            skippedMessagesCount = 5 + Random.nextInt(9),
+            skippedMessagesCount = 6 + Random.nextInt(8),
             lastAnswerDate = System.currentTimeMillis()
         )
     }
